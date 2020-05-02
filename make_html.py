@@ -17,13 +17,53 @@ HTML_BOILERPLATE_END = (
 </html>"""
 )
 
+
+class EditorHtmlProduction:
+    def __init__(self):
+        self.file = open("index.html", "w")
+
+    def __del__(self):
+        self.file.close()
+
+    def add(self, text_output):
+        self.file.write(text_output)
+
+    def add_collection(self, collection):
+        # Start the collection
+        self.add(
+            '<details class="prop-container">'
+            '   <summary>%s</summary>'
+            '   <div class="prop-container__inner">'
+            '       <div class="prop-container__edit-grid">'
+            % collection.collection_name
+        )
+
+        # Add the properties
+        for prop in collection.dproperties:
+            self.add_text_edit(prop.display_name, prop.default_val)
+
+        # Finish the collection HTML attributes!
+        self.add(
+            '       </div>' # prop-container__edit-grid
+            '   </div>' # prop-container__inner
+            '</details>' # prop-container
+        )
+
+    def add_text_edit(self, name, value):
+        self.add(
+            '<label class="num-edit__label">%s</label>'
+            '<input class="num-edit__input" value="%s"/>'
+            % (name, value)
+        )
+
 def main():
     with open("test2_class.py", buffering=8096) as file:
         my_collection = dcompile_ast(file)
 
-    with open("index.html", "w") as file:
-        file.write(HTML_BOILERPLATE_START)
-        file.write(HTML_BOILERPLATE_END)
+    out = EditorHtmlProduction()
+    out.add(HTML_BOILERPLATE_START)
+    out.add_collection(my_collection)
+    out.add(HTML_BOILERPLATE_END)
 
 if __name__ == '__main__':
     main()
