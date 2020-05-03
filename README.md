@@ -48,3 +48,4 @@ These are the features currently supported or coming soon.
 - [x] UI clamping and validation (Tkinter)
 - [ ] UI clamping and validation (HTML)
 - [ ] Tooltips
+- [ ] Lists of values
