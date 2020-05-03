@@ -2,7 +2,7 @@
 
 Python property exposing and editing utility
 
-## Why
+## Disrupting the industry
 
 Traditionally, configuration files had to be saved somewhere on the hard drive
 and if you wanted to change a value, you'd have to manually open the text file,
