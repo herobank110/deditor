@@ -21,8 +21,10 @@ HTML_BOILERPLATE_END = (
 class EditorHtmlProduction:
     def __init__(self):
         self.file = open("index.html", "w")
+        self.add(HTML_BOILERPLATE_START)
 
     def __del__(self):
+        self.add(HTML_BOILERPLATE_END)
         self.file.close()
 
     def add(self, text_output):
@@ -61,9 +63,7 @@ def main():
         my_collection = dcompile_ast(file)
 
     out = EditorHtmlProduction()
-    out.add(HTML_BOILERPLATE_START)
     out.add_collection(my_collection)
-    out.add(HTML_BOILERPLATE_END)
 
 if __name__ == '__main__':
     main()
