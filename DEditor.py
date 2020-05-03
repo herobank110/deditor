@@ -4,7 +4,7 @@ DEngine definition for GUI editor of values.
 
 from tile_based_node_game2_ttk import *
 import tkinter.constants
-from tkinter.ttk import Label
+from tkinter.ttk import Label, Frame
 import ast, linecache, sys
 
 def DPROPERTY(*args, **kw):
@@ -745,12 +745,12 @@ def main():
 ##        my_collection = dcompile(file)
         my_collection = dcompile_ast(file)
 
-    #my_collection.collection_name = "My New Collection"
+    my_collection.collection_name = "My New Collection"
 
-    #w = WgtManager()
-    #w.make_window("DEditor", first_menu=EditorMainMenu, start_mainloop=False)
-    #w._cur_menu.set_collection(my_collection)
-    #return w.start_mainloop()
+    w = WgtManager()
+    w.make_window("DEditor", first_menu=EditorMainMenu, start_mainloop=False)
+    w._cur_menu.set_collection(my_collection)
+    return w.start_mainloop()
 
 if __name__ == '__main__':
     main()
