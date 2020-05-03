@@ -44,6 +44,10 @@ class EditorHtmlProduction:
         for prop in collection.dproperties:
             self.add_text_edit(prop.display_name, prop.default_val)
 
+        # Add subcollections
+        for sub in collection.subcollections:
+            self.add_collection(sub)
+
         # Finish the collection HTML attributes!
         self.add(
             '       </div>' # prop-container__edit-grid
